@@ -1,9 +1,9 @@
 package com.vathsav.blink.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.vathsav.blink.R;
 import com.vathsav.blink.fragment.HomeFragment;
+import com.vathsav.blink.utils.Constants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,12 +28,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        openFragment(new HomeFragment());
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(Constants.intentNewLogActivity));
             }
         });
 
@@ -78,23 +80,26 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Fragment selectedFragment;
 
         switch (id) {
             case R.id.nav_home:
-                selectedFragment = new HomeFragment();
+                openFragment(new HomeFragment());
                 break;
             default:
-                selectedFragment = null;
+                openFragment(new HomeFragment());
+                break;
         }
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container_main, selectedFragment)
-                .commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void openFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container_main, fragment)
+                .commit();
     }
 }

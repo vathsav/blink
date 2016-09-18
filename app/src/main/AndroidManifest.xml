@@ -35,6 +35,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.NewLogActivity">
+            <intent-filter>
+                <action android:name="com.vathsav.blink.NEW_LOG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -20,13 +20,12 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(2000);
-                    Intent startMainActivity = new Intent(Constants.intentMainActivity);
-                    startActivity(startMainActivity);
+                    startActivity(new Intent(Constants.intentMainActivity));
+                    finish();
                 } catch (Exception ex) {
                     Log.e(Constants.LOG_ERROR, ex.getMessage());
                 }
             }
         }.start();
-        finish();
     }
 }

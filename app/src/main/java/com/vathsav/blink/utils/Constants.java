@@ -11,4 +11,5 @@ public class Constants {
     // Intent Action Names
     public static final String intentMainActivity = "com.vathsav.blink.MAIN";
     public static final String intentDetailsActivity = "com.vathsav.blink.DETAILS";
+    public static final String intentNewLogActivity = "com.vathsav.blink.NEW_LOG";
 }
