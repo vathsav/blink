@@ -1,6 +1,5 @@
 package com.vathsav.blink.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(2000);
-                    startActivity(new Intent(Constants.intentMainActivity));
+                    startActivity(Constants.intentMainActivity);
                     finish();
                 } catch (Exception ex) {
                     Log.e(Constants.LOG_ERROR, ex.getMessage());
