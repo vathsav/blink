@@ -25,7 +25,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
 
     @Override
     public LogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_log, parent);
+        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_log, parent, false);
         return new LogViewHolder(layout, context);
     }
 

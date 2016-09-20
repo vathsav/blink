@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.vathsav.blink.R;
+import com.vathsav.blink.fragment.FavoritesFragment;
 import com.vathsav.blink.fragment.HomeFragment;
 import com.vathsav.blink.utils.Constants;
 
@@ -85,10 +86,9 @@ public class MainActivity extends AppCompatActivity
                 openFragment(new HomeFragment());
                 break;
             default:
-                openFragment(new HomeFragment());
+                openFragment(new FavoritesFragment());
                 break;
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
     public void openFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container_main, fragment)
+                .replace(R.id.container_main, fragment)
                 .commit();
     }
 }

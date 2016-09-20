@@ -25,23 +25,19 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_fragment_home);
-
-        if (recyclerView != null) {
-            LogAdapter logAdapter = new LogAdapter(dummyLogs(), getContext());
-            recyclerView.setAdapter(logAdapter);
-            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_fragment_home);
+        LogAdapter logAdapter = new LogAdapter(dummyLogs(), getContext());
+
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        recyclerView.setAdapter(logAdapter);
+
+        return view;
     }
 
     private ArrayList<LogItem> dummyLogs() {
