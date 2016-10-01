@@ -28,6 +28,7 @@
         <activity
             android:name=".activity.DetailsActivity"
             android:label="@string/title_activity_details"
+            android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.vathsav.blink.DETAILS" />
@@ -42,10 +43,22 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.AboutActivity">
+            <intent-filter>
+                <action android:name="com.vathsav.blink.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity android:name=".activity.AboutActivity"></activity>
+            android:label="@string/title_activity_settings">
+            <intent-filter>
+                <action android:name="com.vathsav.blink.SETTINGS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

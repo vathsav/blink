@@ -69,8 +69,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.action_about:
+                startActivity(Constants.intentAboutActivity);
             case R.id.action_settings:
-                return true;
+                startActivity(Constants.intentSettingsActivity);
         }
 
         return super.onOptionsItemSelected(item);
