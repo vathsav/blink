@@ -1,6 +1,17 @@
 # Blink
 Blink let's you log important moments of your life. Users can create text, audio, and video logs and share it with friends and family.
 
+**Status:** Under development
+
+**To do**
+* Authentication
+* Text logs
+* Audio recording
+* Video attachments
+* Offline persistence
+* Share
+* Wearable support
+
 ## License
 
 Copyright 2016 Vathsav Harikrishnan
