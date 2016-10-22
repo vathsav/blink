@@ -15,7 +15,9 @@ import android.view.View;
 
 import com.vathsav.blink.R;
 import com.vathsav.blink.fragment.FavoritesFragment;
+import com.vathsav.blink.fragment.FeedbackFragment;
 import com.vathsav.blink.fragment.HomeFragment;
+import com.vathsav.blink.fragment.ProfileFragment;
 import com.vathsav.blink.utils.Constants;
 
 public class MainActivity extends AppCompatActivity
@@ -87,9 +89,21 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_home:
                 openFragment(new HomeFragment());
                 break;
-            default:
+            case R.id.nav_profile:
+                openFragment(new ProfileFragment());
+                break;
+            case R.id.nav_feedback:
+                openFragment(new FeedbackFragment());
+                break;
+            case R.id.nav_favorites:
                 openFragment(new FavoritesFragment());
                 break;
+            case R.id.nav_store:
+                // TODO: 02/10/16 Add link to the Play Store
+                break;
+            case R.id.nav_logout:
+                startActivity(Constants.intentVerificationActivity);
+                finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

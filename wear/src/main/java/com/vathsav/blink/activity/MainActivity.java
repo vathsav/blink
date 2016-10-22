@@ -1,9 +1,11 @@
-package com.vathsav.blink;
+package com.vathsav.blink.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 import android.widget.TextView;
+
+import com.vathsav.blink.R;
 
 public class MainActivity extends Activity {
 

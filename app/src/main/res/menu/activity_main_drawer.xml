@@ -6,19 +6,30 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
             android:title="Home" />
-
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Feedback" />
         <item
             android:id="@+id/nav_favorites"
             android:icon="@drawable/ic_menu_camera"
             android:title="Favorites" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Miscellaneous">
         <menu>
             <item
-                android:id="@+id/nav_logout"
+                android:id="@+id/nav_store"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="Home" />
+                android:title="Rate on the Play Store" />
+            <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Logout" />
         </menu>
     </item>
 

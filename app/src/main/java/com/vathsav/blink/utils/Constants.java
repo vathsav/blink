@@ -11,6 +11,7 @@ public class Constants {
     public static final String LOG_ERROR = "Blink_Error";
 
     // Activity Intents
+    public static final Intent intentVerificationActivity = new Intent("com.vathsav.blink.VERIFICATION");
     public static final Intent intentMainActivity = new Intent("com.vathsav.blink.MAIN");
     public static final Intent intentDetailsActivity = new Intent("com.vathsav.blink.DETAILS");
     public static final Intent intentNewLogActivity = new Intent("com.vathsav.blink.NEW_LOG");
