@@ -5,18 +5,14 @@ package com.vathsav.blink.model;
  */
 
 public class LogItem {
-    public String log_key;
-    public String log_title;
-    public long log_timestamp;
+    private String log_title;
+    private long log_timestamp;
 
-    public LogItem(String log_key, String log_title, long log_timestamp) {
-        this.log_key = log_key;
+    public LogItem() {}
+
+    public LogItem( String log_title, long log_timestamp) {
         this.log_title = log_title;
         this.log_timestamp = log_timestamp;
-    }
-
-    public String get_log_key() {
-        return log_key;
     }
 
     public String get_log_title() {

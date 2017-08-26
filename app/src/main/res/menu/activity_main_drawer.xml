@@ -5,32 +5,23 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Home" />
+            android:title="@string/nav_item_home" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Profile" />
+            android:title="@string/nav_item_profile" />
         <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Feedback" />
+            android:title="@string/nav_item_feedback" />
         <item
             android:id="@+id/nav_favorites"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Favorites" />
-    </group>
-
-    <item android:title="Miscellaneous">
-        <menu>
-            <item
-                android:id="@+id/nav_store"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="Rate on the Play Store" />
-            <item
+            android:title="@string/nav_item_favorites" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Logout" />
-        </menu>
-    </item>
+            android:title="@string/nav_item_logout" />
+    </group>
 
 </menu>

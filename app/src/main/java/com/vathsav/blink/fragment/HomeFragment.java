@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.vathsav.blink.R;
 import com.vathsav.blink.model.LogAdapter;
 import com.vathsav.blink.model.LogItem;
@@ -20,6 +25,10 @@ import java.util.ArrayList;
  */
 
 public class HomeFragment extends Fragment {
+
+    FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+    DatabaseReference reference = firebase.getReference();
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -28,24 +37,34 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_fragment_home);
-        LogAdapter logAdapter = new LogAdapter(dummyLogs(), getContext());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<LogItem> userLogs = new ArrayList<>();
 
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        recyclerView.setAdapter(logAdapter);
+                for (DataSnapshot logSnapshot : dataSnapshot.getChildren()) {
+                    String logTitle = logSnapshot.child("log_title").getValue().toString();
+                    Long logTimestamp = Long.parseLong(logSnapshot.child("log_timestamp").getValue().toString());
+
+                    userLogs.add(new LogItem(logTitle, logTimestamp));
+                }
+
+                RecyclerView recyclerView = view.findViewById(R.id.recycler_view_fragment_home);
+                StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
+                recyclerView.setLayoutManager(staggeredGridLayoutManager);
+
+                LogAdapter logAdapter = new LogAdapter(userLogs, getContext());
+                recyclerView.setAdapter(logAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         return view;
-    }
-
-    private ArrayList<LogItem> dummyLogs() {
-        ArrayList<LogItem> userLogs = new ArrayList<>();
-        userLogs.add(0, new LogItem("PUSH_KEY", "Darkside", System.currentTimeMillis()));
-        userLogs.add(1, new LogItem("PUSH_KEY", "Fellowship", System.currentTimeMillis()));
-        userLogs.add(2, new LogItem("PUSH_KEY", "Starlord", System.currentTimeMillis()));
-        userLogs.add(3, new LogItem("PUSH_KEY", "Blimp", System.currentTimeMillis()));
-        return userLogs;
     }
 }
