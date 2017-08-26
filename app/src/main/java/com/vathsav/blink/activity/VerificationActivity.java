@@ -17,8 +17,8 @@ public class VerificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
 
-        final EditText editTextPhoneNumber = (EditText) findViewById(R.id.edit_text_phone_number);
-        Button buttonVerifyPhoneNumber = (Button) findViewById(R.id.button_verify_phone_number);
+        final EditText editTextPhoneNumber = findViewById(R.id.edit_text_phone_number);
+        Button buttonVerifyPhoneNumber = findViewById(R.id.button_verify_phone_number);
 
         buttonVerifyPhoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override

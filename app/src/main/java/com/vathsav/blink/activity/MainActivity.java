@@ -93,9 +93,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_profile:
                 openFragment(new ProfileFragment());
                 break;
-            case R.id.nav_feedback:
-                openFragment(new FeedbackFragment());
-                break;
             case R.id.nav_favorites:
                 openFragment(new FavoritesFragment());
                 break;

@@ -34,9 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="25dp"
+        android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
+        android:tint="#FFF"
+        android:src="@drawable/ic_border_color_black_24dp"
         app:fabSize="normal"
         app:srcCompat="@color/colorAccent" />
 </RelativeLayout>
