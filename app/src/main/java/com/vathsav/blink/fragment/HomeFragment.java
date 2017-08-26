@@ -45,10 +45,12 @@ public class HomeFragment extends Fragment {
                 ArrayList<LogItem> userLogs = new ArrayList<>();
 
                 for (DataSnapshot logSnapshot : dataSnapshot.getChildren()) {
+                    String logKey = logSnapshot.getKey();
                     String logTitle = logSnapshot.child("log_title").getValue().toString();
-                    Long logTimestamp = Long.parseLong(logSnapshot.child("log_timestamp").getValue().toString());
+                    String logContent = logSnapshot.child("log_content").getValue().toString();
+                    long logTimestamp = Long.parseLong(logSnapshot.child("log_timestamp").getValue().toString());
 
-                    userLogs.add(new LogItem(logTitle, logTimestamp));
+                    userLogs.add(new LogItem(logKey, logTitle, logContent, logTimestamp));
                 }
 
                 RecyclerView recyclerView = view.findViewById(R.id.recycler_view_fragment_home);

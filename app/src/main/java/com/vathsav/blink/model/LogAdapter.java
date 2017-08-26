@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.vathsav.blink.R;
 
@@ -32,6 +31,10 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
 
     @Override
     public void onBindViewHolder(LogViewHolder holder, int position) {
+        holder.title = listOfLogs.get(position).get_log_title();
+        holder.content = listOfLogs.get(position).get_log_content();
+        holder.timestamp = listOfLogs.get(position).get_log_timestamp();
+
         holder.textViewTitle.setText(listOfLogs.get(position).get_log_title());
         holder.textViewTimestamp.setText(String.valueOf(listOfLogs.get(position).get_log_timestamp()));
     }
