@@ -43,8 +43,8 @@ public class NewLogActivity extends AppCompatActivity {
                 ).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-//                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                                .setAction("Action", null).show();
+                        finish();
+                        startActivity(Constants.intentDetailsActivity);
                     }
                 });
             }
