@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.vathsav.blink.activity.NewLogActivity">
 
-
     <EditText
         android:id="@+id/edit_text_new_log_title"
         android:layout_width="match_parent"
@@ -28,6 +27,80 @@
         android:layout_below="@+id/edit_text_new_log_title"
         android:hint="Content" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Pick Color" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button2"
+        android:layout_marginEnd="27dp"
+        android:layout_toStartOf="@+id/button2"
+        android:text="Include Media" />
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fab_publish_new_log"
+        android:layout_alignParentStart="true"
+        android:weightSum="6">
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_lens_black_24dp"
+            android:tint="#00E5FF" />
+
+        <ImageButton
+            android:id="@+id/imageView2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_lens_black_24dp"
+            android:tint="#ff1744" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_lens_black_24dp"
+            android:tint="#651FFF" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_lens_black_24dp"
+            android:tint="#FFEA00" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_lens_black_24dp"
+            android:tint="#76FF03" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_lens_black_24dp"
+            android:tint="#424242" />
+    </LinearLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_publish_new_log"
         android:layout_width="wrap_content"
@@ -36,8 +109,9 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
-        android:tint="#FFF"
         android:src="@drawable/ic_border_color_black_24dp"
+        android:tint="#FFF"
         app:fabSize="normal"
         app:srcCompat="@color/colorAccent" />
+
 </RelativeLayout>

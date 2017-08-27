@@ -178,4 +178,5 @@
         completions."
     </string>
     <string name="author">Vathsav Harikrishnan</string>
+    <string name="nav_item_preferences">Preferences</string>
 </resources>

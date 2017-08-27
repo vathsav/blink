@@ -2,6 +2,7 @@ package com.vathsav.blink.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,6 @@ import android.view.View;
 
 import com.vathsav.blink.R;
 import com.vathsav.blink.fragment.FavoritesFragment;
-import com.vathsav.blink.fragment.FeedbackFragment;
 import com.vathsav.blink.fragment.HomeFragment;
 import com.vathsav.blink.fragment.ProfileFragment;
 import com.vathsav.blink.utils.Constants;
@@ -24,10 +24,15 @@ import com.vathsav.blink.utils.Constants;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static CoordinatorLayout coordinatorLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        coordinatorLayout = findViewById(R.id.coordinator_layout);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -74,14 +79,11 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.action_about:
                 startActivity(Constants.intentAboutActivity);
-            case R.id.action_settings:
-                startActivity(Constants.intentSettingsActivity);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -95,6 +97,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_favorites:
                 openFragment(new FavoritesFragment());
+                break;
+            case R.id.nav_preferences:
+                startActivity(Constants.intentSettingsActivity);
                 break;
             case R.id.nav_logout:
                 startActivity(Constants.intentVerificationActivity);
