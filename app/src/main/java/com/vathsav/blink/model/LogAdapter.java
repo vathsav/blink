@@ -1,6 +1,7 @@
 package com.vathsav.blink.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -97,7 +98,12 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
         holder.imageButtonShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                context.startActivity(Intent.createChooser(
+                        new Intent(android.content.Intent.ACTION_SEND).setType("text/plain")
+                                .putExtra(android.content.Intent.EXTRA_SUBJECT, holder.title)
+                                .putExtra(android.content.Intent.EXTRA_TEXT, holder.content),
+                        "How would you like to share your log?")
+                );
             }
         });
     }
