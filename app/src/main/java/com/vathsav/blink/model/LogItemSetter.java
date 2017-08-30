@@ -1,16 +1,17 @@
 package com.vathsav.blink.model;
 
 /**
- * Created by vathsav on 26/08/17.
+ * Setter class for inserting logs into Firebase
  */
 
+@SuppressWarnings("WeakerAccess")
 public class LogItemSetter {
 
-    public String log_title;
-    public String log_content;
-    public boolean log_favorite;
-    public String log_color;
-    public Object log_timestamp;
+    public final String log_title;
+    public final String log_content;
+    public final boolean log_favorite;
+    public final String log_color;
+    public final Object log_timestamp;
 
     public LogItemSetter(String log_title, String log_content, boolean log_favorite, String log_color, Object log_timestamp) {
         this.log_title = log_title;

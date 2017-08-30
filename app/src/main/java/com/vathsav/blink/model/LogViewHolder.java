@@ -15,12 +15,12 @@ import com.vathsav.blink.utils.Constants;
  */
 
 public class LogViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    TextView textViewTitle;
-    TextView textViewTimestamp;
-    ImageButton imageButtonEdit;
-    ImageButton imageButtonFavorite;
-    ImageButton imageButtonShare;
-    Context context;
+    final TextView textViewTitle;
+    final TextView textViewTimestamp;
+    final ImageButton imageButtonEdit;
+    final ImageButton imageButtonFavorite;
+    final ImageButton imageButtonShare;
+    final Context context;
     String key;
     String title;
     String content;

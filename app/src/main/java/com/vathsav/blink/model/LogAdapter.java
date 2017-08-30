@@ -23,8 +23,8 @@ import java.util.List;
  */
 
 public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
-    List<LogItem> listOfLogs;
-    Context context;
+    private final List<LogItem> listOfLogs;
+    private final Context context;
 
     public LogAdapter(List<LogItem> listOfLogs, Context context) {
         this.listOfLogs = listOfLogs;

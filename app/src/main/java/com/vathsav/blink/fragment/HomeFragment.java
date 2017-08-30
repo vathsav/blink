@@ -27,8 +27,8 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-    DatabaseReference reference = firebase.getReference().child(Constants.user_id);
+    final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+    final DatabaseReference reference = firebase.getReference().child(Constants.user_id);
 
     public HomeFragment() {
         // Required empty public constructor

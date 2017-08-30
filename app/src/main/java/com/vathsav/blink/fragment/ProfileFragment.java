@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vathsav.blink.R;
-import com.vathsav.blink.activity.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.

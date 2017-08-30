@@ -8,7 +8,7 @@ import android.content.Intent;
 public class Constants {
 
     // User ID
-    public static String user_id = "12345";
+    public static final String user_id = "12345";
 
     // Log Keys
     public static final String LOG_ERROR = "Blink_Error";
