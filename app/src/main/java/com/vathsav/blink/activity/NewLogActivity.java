@@ -30,6 +30,16 @@ public class NewLogActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        final String key = getIntent().getStringExtra("key");
+        String title = getIntent().getStringExtra("title");
+        String content = getIntent().getStringExtra("content");
+
+        if (key != null) {
+            editTextLogTitle.setText(title);
+            editTextLogContent.setText(content);
+        }
+
+
         FloatingActionButton fabPublish = findViewById(R.id.fab_publish_new_log);
 
         fabPublish.setOnClickListener(new View.OnClickListener() {
@@ -38,15 +48,27 @@ public class NewLogActivity extends AppCompatActivity {
                 String title = editTextLogTitle.getText().toString();
                 String content = editTextLogContent.getText().toString();
 
-                FirebaseDatabase.getInstance().getReference().child(Constants.user_id).push().setValue(
-                        new LogItemSetter(title, content, false, "blue", ServerValue.TIMESTAMP)
-                ).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        finish();
-                        startActivity(Constants.intentDetailsActivity);
-                    }
-                });
+                if (key != null) {
+                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).child(key).setValue(
+                            new LogItemSetter(title, content, false, "blue", ServerValue.TIMESTAMP)
+                    ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            finish();
+                            startActivity(Constants.intentDetailsActivity);
+                        }
+                    });
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).push().setValue(
+                            new LogItemSetter(title, content, false, "blue", ServerValue.TIMESTAMP)
+                    ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            finish();
+                            startActivity(Constants.intentDetailsActivity);
+                        }
+                    });
+                }
             }
         });
     }

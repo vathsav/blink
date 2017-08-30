@@ -57,7 +57,11 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
         holder.imageButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                context.startActivity(new Intent(Constants.intentNewLogActivity)
+                        .putExtra("key", holder.key)
+                        .putExtra("title", holder.title)
+                        .putExtra("content", holder.content)
+                );
             }
         });
 
