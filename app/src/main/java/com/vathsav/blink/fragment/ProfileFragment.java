@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.vathsav.blink.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Profile fragment, shows user activity and display picture with a short bio.
  */
 public class ProfileFragment extends Fragment {
 

@@ -31,74 +31,81 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/linearLayout5"
+        android:layout_alignEnd="@+id/fab_publish_new_log"
+        android:layout_marginBottom="78dp"
         android:text="@string/hint_pick_color" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button2"
-        android:layout_marginEnd="27dp"
-        android:layout_toStartOf="@+id/button2"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignParentStart="true"
         android:text="@string/hint_attachment" />
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/fab_publish_new_log"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         android:weightSum="6">
 
         <ImageButton
+            android:id="@+id/image_button_color_cyan"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_weight="1"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_lens_black_24dp"
-            android:tint="#00E5FF" />
+            android:tint="@color/cardview_color_cyan" />
 
         <ImageButton
-            android:id="@+id/imageView2"
+            android:id="@+id/image_button_color_red"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_weight="1"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_lens_black_24dp"
-            android:tint="#ff1744" />
+            android:tint="@color/cardview_color_red" />
 
         <ImageButton
+            android:id="@+id/image_button_color_blue"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_weight="1"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_lens_black_24dp"
-            android:tint="#651FFF" />
+            android:tint="@color/cardview_color_blue" />
 
         <ImageButton
+            android:id="@+id/image_button_color_yellow"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_weight="1"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_lens_black_24dp"
-            android:tint="#FFEA00" />
+            android:tint="@color/cardview_color_yellow" />
 
         <ImageButton
+            android:id="@+id/image_button_color_green"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_weight="1"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_lens_black_24dp"
-            android:tint="#76FF03" />
+            android:tint="@color/cardview_color_green" />
 
         <ImageButton
+            android:id="@+id/image_button_color_gray"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_weight="1"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_lens_black_24dp"
-            android:tint="#424242" />
+            android:tint="@color/cardview_color_gray" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

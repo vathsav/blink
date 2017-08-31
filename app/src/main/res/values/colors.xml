@@ -6,4 +6,14 @@
 
     <color name="cardview_dark_background">#3F51B5</color>
     <color name="cardview_light_background">#FFFFFFFF</color>
+
+    <color name="color_white">#FFFFFF</color>
+
+    <color name="cardview_color_cyan">#00E5FF</color>
+    <color name="cardview_color_red">#F50057</color>
+    <color name="cardview_color_blue">#651FFF</color>
+    <color name="cardview_color_yellow">#FFEA00</color>
+    <color name="cardview_color_green">#C6FF00</color>
+    <color name="cardview_color_gray">#424242</color>
+
 </resources>

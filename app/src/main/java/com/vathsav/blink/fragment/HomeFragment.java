@@ -21,7 +21,6 @@ import com.vathsav.blink.utils.Constants;
 import java.util.ArrayList;
 
 /**
- * HomeFragment
  * Contains a StaggeredGridLayout of cards
  */
 

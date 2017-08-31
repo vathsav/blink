@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,13 +35,64 @@ public class NewLogActivity extends AppCompatActivity {
         String title = getIntent().getStringExtra("title");
         String content = getIntent().getStringExtra("content");
 
+        final FloatingActionButton fabPublish = findViewById(R.id.fab_publish_new_log);
+        ImageButton imageButtonColorCyan = findViewById(R.id.image_button_color_cyan);
+        ImageButton imageButtonColorRed = findViewById(R.id.image_button_color_red);
+        ImageButton imageButtonColorBlue = findViewById(R.id.image_button_color_blue);
+        ImageButton imageButtonColorYellow = findViewById(R.id.image_button_color_yellow);
+        ImageButton imageButtonColorGreen = findViewById(R.id.image_button_color_green);
+        ImageButton imageButtonColorGray = findViewById(R.id.image_button_color_gray);
+
+        fabPublish.setBackgroundColor(getResources().getColor(R.color.cardview_color_yellow));
+        final String[] selectedColor = new String[1];
+
+        imageButtonColorCyan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedColor[0] = "cyan";
+            }
+        });
+
+        imageButtonColorRed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedColor[0] = "red";
+            }
+        });
+
+        imageButtonColorBlue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedColor[0] = "blue";
+            }
+        });
+
+        imageButtonColorYellow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedColor[0] = "yellow";
+            }
+        });
+
+        imageButtonColorGreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedColor[0] = "green";
+            }
+        });
+
+        imageButtonColorGray.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedColor[0] = "gray";
+            }
+        });
+
+
         if (key != null) {
             editTextLogTitle.setText(title);
             editTextLogContent.setText(content);
         }
-
-
-        FloatingActionButton fabPublish = findViewById(R.id.fab_publish_new_log);
 
         fabPublish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +102,7 @@ public class NewLogActivity extends AppCompatActivity {
 
                 if (key != null) {
                     FirebaseDatabase.getInstance().getReference().child(Constants.user_id).child(key).setValue(
-                            new LogItemSetter(title, content, false, "blue", ServerValue.TIMESTAMP)
+                            new LogItemSetter(title, content, false, selectedColor[0], ServerValue.TIMESTAMP)
                     ).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -60,7 +112,7 @@ public class NewLogActivity extends AppCompatActivity {
                     });
                 } else {
                     FirebaseDatabase.getInstance().getReference().child(Constants.user_id).push().setValue(
-                            new LogItemSetter(title, content, false, "blue", ServerValue.TIMESTAMP)
+                            new LogItemSetter(title, content, false, selectedColor[0], ServerValue.TIMESTAMP)
                     ).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
