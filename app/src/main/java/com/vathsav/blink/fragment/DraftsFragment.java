@@ -15,8 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vathsav.blink.R;
-import com.vathsav.blink.model.LogAdapter;
-import com.vathsav.blink.model.LogItem;
+import com.vathsav.blink.adapter.DraftAdapter;
+import com.vathsav.blink.model.DraftItem;
 import com.vathsav.blink.utils.Constants;
 
 import java.util.ArrayList;
@@ -34,7 +34,6 @@ public class DraftsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,24 +44,24 @@ public class DraftsFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<LogItem> userLogs = new ArrayList<>();
+                ArrayList<DraftItem> userDrafts = new ArrayList<>();
 
-                for (DataSnapshot logSnapshot : dataSnapshot.getChildren()) {
-                    String logKey = logSnapshot.getKey();
-                    String logTitle = logSnapshot.child("log_title").getValue().toString();
-                    String logContent = logSnapshot.child("log_content").getValue().toString();
-                    String logColor = logSnapshot.child("log_color").getValue().toString();
-                    long logTimestamp = Long.parseLong(logSnapshot.child("log_timestamp").getValue().toString());
+                for (DataSnapshot draftSnapshot : dataSnapshot.getChildren()) {
+                    String draftKey = draftSnapshot.getKey();
+                    String draftTitle = draftSnapshot.child("draft_title").getValue().toString();
+                    String draftContent = draftSnapshot.child("draft_content").getValue().toString();
+                    String draftColor = draftSnapshot.child("draft_color").getValue().toString();
+                    long draftTimestamp = Long.parseLong(draftSnapshot.child("draft_timestamp").getValue().toString());
 
-                    userLogs.add(new LogItem(logKey, logTitle, logContent, false, logColor, logTimestamp));
+                    userDrafts.add(new DraftItem(draftKey, draftTitle, draftContent, draftColor, draftTimestamp));
                 }
 
                 RecyclerView recyclerView = view.findViewById(R.id.recycler_view_drafts);
                 StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
                 recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
-                LogAdapter logAdapter = new LogAdapter(userLogs, getContext());
-                recyclerView.setAdapter(logAdapter);
+                DraftAdapter draftAdapter = new DraftAdapter(userDrafts, getContext());
+                recyclerView.setAdapter(draftAdapter);
             }
 
             @Override

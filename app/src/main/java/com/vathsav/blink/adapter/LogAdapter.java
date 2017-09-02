@@ -1,4 +1,4 @@
-package com.vathsav.blink.model;
+package com.vathsav.blink.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vathsav.blink.R;
 import com.vathsav.blink.activity.MainActivity;
+import com.vathsav.blink.model.LogItem;
 import com.vathsav.blink.utils.Constants;
 
 import java.util.List;

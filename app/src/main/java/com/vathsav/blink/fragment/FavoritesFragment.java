@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vathsav.blink.R;
-import com.vathsav.blink.model.LogAdapter;
+import com.vathsav.blink.adapter.LogAdapter;
 import com.vathsav.blink.model.LogItem;
 import com.vathsav.blink.utils.Constants;
 

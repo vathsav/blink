@@ -1,4 +1,4 @@
-package com.vathsav.blink.model;
+package com.vathsav.blink.adapter;
 
 import android.content.Context;
 import android.content.Intent;

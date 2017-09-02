@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.vathsav.blink.R;
+import com.vathsav.blink.model.DraftItemSetter;
 import com.vathsav.blink.model.LogItemSetter;
 import com.vathsav.blink.utils.Constants;
 
@@ -47,6 +49,10 @@ public class NewLogActivity extends AppCompatActivity {
         key = getIntent().getStringExtra("key");
         String title = getIntent().getStringExtra("title");
         String content = getIntent().getStringExtra("content");
+
+        if (getIntent().getStringExtra("key") != null) {
+            color = getIntent().getStringExtra("color");
+        }
 
         final FloatingActionButton fabPublish = findViewById(R.id.fab_publish_new_log);
         ImageButton imageButtonColorCyan = findViewById(R.id.image_button_color_cyan);
@@ -145,20 +151,33 @@ public class NewLogActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        Toast.makeText(getApplicationContext(), color, Toast.LENGTH_SHORT).show();
+
         if (id == android.R.id.home) {
             if (editTextLogTitle.getText().toString().isEmpty() && editTextLogContent.getText().toString().isEmpty())
                 finish();
             else {
-                databaseReference.child(Constants.user_id).child(Constants.referenceDrafts).push()
-                        .setValue(new LogItemSetter(
-                                editTextLogTitle.getText().toString(),
-                                editTextLogContent.getText().toString(),
-                                false,
-                                color,
-                                ServerValue.TIMESTAMP)
-                        );
+                if (key != null && key.length() > 0) {
+                    // Editing a log or a draft. Must overwrite existing drafts. Child key.
+                    databaseReference.child(Constants.user_id).child(Constants.referenceDrafts).child(key)
+                            .setValue(new DraftItemSetter(
+                                    editTextLogTitle.getText().toString(),
+                                    editTextLogContent.getText().toString(),
+                                    color,
+                                    ServerValue.TIMESTAMP)
+                            );
+                } else {
+                    databaseReference.child(Constants.user_id).child(Constants.referenceDrafts).push()
+                            .setValue(new DraftItemSetter(
+                                    editTextLogTitle.getText().toString(),
+                                    editTextLogContent.getText().toString(),
+                                    color,
+                                    ServerValue.TIMESTAMP)
+                            );
+                }
                 finish();
             }
+
             return true;
         }
 
