@@ -1,10 +1,11 @@
 package com.vathsav.blink.activity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.vathsav.blink.R;
 import com.vathsav.blink.fragment.DraftsFragment;
@@ -23,6 +25,8 @@ import com.vathsav.blink.fragment.HomeFragment;
 import com.vathsav.blink.fragment.ProfileFragment;
 import com.vathsav.blink.utils.Constants;
 
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity
@@ -42,11 +46,25 @@ public class MainActivity extends AppCompatActivity
 
         openFragment(new HomeFragment());
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FabSpeedDial fab = findViewById(R.id.fab_speed_dial);
+        fab.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
-            public void onClick(View view) {
-                startActivity(Constants.intentNewLogActivity);
+            public boolean onMenuItemSelected(MenuItem fabMenuItem) {
+                int id = fabMenuItem.getItemId();
+
+                switch (id) {
+                    case R.id.fab_text:
+                        startActivity(Constants.intentNewTextLogActivity);
+                        break;
+                    case R.id.fab_audio:
+                        startActivity(Constants.intentNewAudioLogActivity);
+                        break;
+                    case R.id.fab_video:
+                        startActivity(Constants.intentNewVideoLogActivity);
+                        break;
+                }
+
+                return false;
             }
         });
 
@@ -55,9 +73,20 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+    }
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String display_name = preferences.getString("display_name", null);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View navigationHeader = navigationView.getHeaderView(0);
+        TextView textViewNavUserName = navigationHeader.findViewById(R.id.text_view_nav_user_name);
+        textViewNavUserName.setText(display_name);
     }
 
     @Override

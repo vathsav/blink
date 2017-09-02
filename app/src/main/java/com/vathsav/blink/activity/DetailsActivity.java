@@ -37,27 +37,26 @@ public class DetailsActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
 
-        if (content != null)
-            switch (color) {
-                case "cyan":
-                    collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_cyan));
-                    break;
-                case "red":
-                    collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_red));
-                    break;
-                case "blue":
-                    collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_blue));
-                    break;
-                case "yellow":
-                    collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_yellow));
-                    break;
-                case "green":
-                    collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_green));
-                    break;
-                case "gray":
-                    collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_gray));
-                    break;
-            }
+        switch (color) {
+            case "cyan":
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_cyan));
+                break;
+            case "red":
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_red));
+                break;
+            case "blue":
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_blue));
+                break;
+            case "yellow":
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_yellow));
+                break;
+            case "green":
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_green));
+                break;
+            case "gray":
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.cardview_color_gray));
+                break;
+        }
 
         TextView textViewContent = findViewById(R.id.text_view_content);
 

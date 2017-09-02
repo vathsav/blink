@@ -54,6 +54,8 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
                 break;
             case "red":
                 holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_red));
+                // TODO: 02/09/17 Refine this. Works in a strange way. Colors are off by 1. Top corners need to be rounded :(
+                // DrawableCompat.setTint(ContextCompat.getDrawable(context, R.drawable.card_border), ContextCompat.getColor(context, R.color.cardview_color_red));
                 break;
             case "blue":
                 holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_blue));
@@ -80,7 +82,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
         holder.imageButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(Constants.intentNewLogActivity)
+                context.startActivity(new Intent(Constants.intentNewTextLogActivity)
                         .putExtra("key", holder.key)
                         .putExtra("title", holder.title)
                         .putExtra("content", holder.content)

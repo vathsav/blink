@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +24,7 @@ import com.vathsav.blink.utils.Constants;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class NewLogActivity extends AppCompatActivity {
+public class NewTextLogActivity extends AppCompatActivity {
 
     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -36,14 +36,17 @@ public class NewLogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_log);
+        setContentView(R.layout.activity_new_text_log);
 
         editTextLogTitle = findViewById(R.id.edit_text_new_log_title);
         editTextLogContent = findViewById(R.id.edit_text_new_log_content);
 
+        final Toolbar toolbar = findViewById(R.id.toolbar_new_text_log);
+        toolbar.setTitle(getResources().getString(R.string.title_activity_new_log));
+        setSupportActionBar(toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_new_log));
         }
 
         key = getIntent().getStringExtra("key");
@@ -68,6 +71,8 @@ public class NewLogActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 color = "cyan";
+                getWindow().setStatusBarColor(getResources().getColor(R.color.cardview_color_dark_cyan));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.cardview_color_cyan));
             }
         });
 
@@ -75,6 +80,8 @@ public class NewLogActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 color = "red";
+                getWindow().setStatusBarColor(getResources().getColor(R.color.cardview_color_dark_red));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.cardview_color_red));
             }
         });
 
@@ -82,6 +89,8 @@ public class NewLogActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 color = "blue";
+                getWindow().setStatusBarColor(getResources().getColor(R.color.cardview_color_dark_blue));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.cardview_color_blue));
             }
         });
 
@@ -89,6 +98,8 @@ public class NewLogActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 color = "yellow";
+                getWindow().setStatusBarColor(getResources().getColor(R.color.cardview_color_dark_yellow));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.cardview_color_yellow));
             }
         });
 
@@ -96,6 +107,8 @@ public class NewLogActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 color = "green";
+                getWindow().setStatusBarColor(getResources().getColor(R.color.cardview_color_dark_green));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.cardview_color_green));
             }
         });
 
@@ -103,6 +116,8 @@ public class NewLogActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 color = "gray";
+                getWindow().setStatusBarColor(getResources().getColor(R.color.cardview_color_dark_gray));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.cardview_color_gray));
             }
         });
 
@@ -139,7 +154,11 @@ public class NewLogActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             finish();
-                            startActivity(Constants.intentDetailsActivity);
+                            startActivity(new Intent(Constants.intentDetailsActivity)
+                                    .putExtra("title", title)
+                                    .putExtra("content", content)
+                                    .putExtra("color", color)
+                            );
                         }
                     });
                 }
@@ -151,12 +170,12 @@ public class NewLogActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        Toast.makeText(getApplicationContext(), color, Toast.LENGTH_SHORT).show();
-
         if (id == android.R.id.home) {
             if (editTextLogTitle.getText().toString().isEmpty() && editTextLogContent.getText().toString().isEmpty())
                 finish();
             else {
+                if (color == null || color.equals("")) color = "cyan";
+
                 if (key != null && key.length() > 0) {
                     // Editing a log or a draft. Must overwrite existing drafts. Child key.
                     databaseReference.child(Constants.user_id).child(Constants.referenceDrafts).child(key)

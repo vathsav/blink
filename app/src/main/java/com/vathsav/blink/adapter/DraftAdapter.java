@@ -68,7 +68,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftViewHolder> {
         holder.imageButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(Constants.intentNewLogActivity)
+                context.startActivity(new Intent(Constants.intentNewTextLogActivity)
                         .putExtra("key", holder.key)
                         .putExtra("title", holder.title)
                         .putExtra("content", holder.content)

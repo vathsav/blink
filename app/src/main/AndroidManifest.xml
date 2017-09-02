@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vathsav.blink">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
@@ -52,9 +48,25 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NewLogActivity">
+        <activity
+            android:name=".activity.NewTextLogActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.vathsav.blink.NEW_LOG" />
+                <action android:name="com.vathsav.blink.NEW_TEXT_LOG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.NewAudioLogActivity">
+            <intent-filter>
+                <action android:name="com.vathsav.blink.NEW_AUDIO_LOG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.NewVideoLogActivity">
+            <intent-filter>
+                <action android:name="com.vathsav.blink.NEW_VIDEO_LOG" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fab_text"
+        android:icon="@drawable/ic_mode_edit_black_24dp"
+        android:title="@string/fab_text" />
+    <item
+        android:id="@+id/fab_audio"
+        android:icon="@drawable/ic_mic_black_24dp"
+        android:title="@string/fab_audio" />
+    <item
+        android:id="@+id/fab_video"
+        android:icon="@drawable/ic_videocam_black_24dp"
+        android:title="@string/fab_video" />
+</menu>

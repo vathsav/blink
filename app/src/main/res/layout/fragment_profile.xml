@@ -15,14 +15,14 @@
         app:srcCompat="@drawable/ic_face_black_24dp" />
 
     <TextView
-        android:id="@+id/editText"
+        android:id="@+id/text_view_profile_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:textSize="25sp"
         android:ems="10"
-        android:text="@string/author"
         android:textAlignment="center" />
 
     <LinearLayout
@@ -30,68 +30,80 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/text_view_profile_user_name"
         android:layout_marginTop="51dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageView4"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:src="@drawable/ic_add_black_24dp"
-            android:textAlignment="center" />
+            android:scaleX="1"
+            android:scaleY="1"
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            android:textAlignment="center"
+            android:tint="@color/color_dirty_black" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:src="@drawable/ic_add_black_24dp"
-            android:textAlignment="center" />
+            android:src="@drawable/ic_mic_black_24dp"
+            android:textAlignment="center"
+            android:tint="@color/color_dirty_black" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:src="@drawable/ic_add_black_24dp"
-            android:textAlignment="center" />
+            android:src="@drawable/ic_videocam_black_24dp"
+            android:textAlignment="center"
+            android:tint="@color/color_dirty_black" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout3"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <TextView
-            android:layout_width="wrap_content"
+            fontPath="fonts/Lato-Bold.ttf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="X"
-            android:textAlignment="center" />
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            fontPath="fonts/Lato-Bold.ttf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Y"
-            android:textAlignment="center" />
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            fontPath="fonts/Lato-Bold.ttf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Z"
-            android:textAlignment="center" />
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -100,31 +112,35 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <TextView
-            android:layout_width="wrap_content"
+            fontPath="fonts/Lato-Light.ttf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Text Logs"
+            android:text="Text"
             android:textAlignment="center" />
 
         <TextView
-            android:layout_width="wrap_content"
+            fontPath="fonts/Lato-Light.ttf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Audio Logs"
+            android:text="Audio"
             android:textAlignment="center" />
 
         <TextView
-            android:layout_width="wrap_content"
+            fontPath="fonts/Lato-Light.ttf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Video Logs"
+            android:text="Video"
             android:textAlignment="center" />
     </LinearLayout>
 
@@ -151,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Total: X"
+            android:text="Total: 0"
             android:textColor="#FFF" />
     </RelativeLayout>
 
