@@ -1,0 +1,32 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="display_name"
+        android:summary="@string/preference_display_name_summary"
+        android:title="@string/preference_display_name">
+
+    </EditTextPreference>
+
+    <SwitchPreference
+        android:key="offline_mode"
+        android:summary="@string/preference_offline_mode_summary_enabled"
+        android:title="@string/preference_offline_mode">
+
+    </SwitchPreference>
+
+    <Preference
+        android:key="android_wear"
+        android:summary="@string/preference_android_wear_summary_disconnected"
+        android:title="@string/preference_android_wear">
+        <!--<intent android:action="android.provider.Settings.ACTION_BLUETOOTH_SETTINGS" />-->
+
+    </Preference>
+
+    <SwitchPreference
+        android:key="password_protection"
+        android:summary="@string/preference_password_protection_disabled"
+        android:title="@string/preference_password_protection">
+
+    </SwitchPreference>
+
+</PreferenceScreen>

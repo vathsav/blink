@@ -1,6 +1,7 @@
 package com.vathsav.blink.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.vathsav.blink.R;
@@ -22,20 +24,27 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class NewLogActivity extends AppCompatActivity {
 
+    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    EditText editTextLogTitle;
+    EditText editTextLogContent;
+    String key;
+    String color = Constants.default_color;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_log);
 
-        final EditText editTextLogTitle = findViewById(R.id.edit_text_new_log_title);
-        final EditText editTextLogContent = findViewById(R.id.edit_text_new_log_content);
+        editTextLogTitle = findViewById(R.id.edit_text_new_log_title);
+        editTextLogContent = findViewById(R.id.edit_text_new_log_content);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_new_log));
         }
 
-        final String key = getIntent().getStringExtra("key");
+        key = getIntent().getStringExtra("key");
         String title = getIntent().getStringExtra("title");
         String content = getIntent().getStringExtra("content");
 
@@ -48,50 +57,48 @@ public class NewLogActivity extends AppCompatActivity {
         ImageButton imageButtonColorGray = findViewById(R.id.image_button_color_gray);
 
         fabPublish.setBackgroundColor(getResources().getColor(R.color.cardview_color_yellow));
-        final String[] selectedColor = new String[1];
 
         imageButtonColorCyan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColor[0] = "cyan";
+                color = "cyan";
             }
         });
 
         imageButtonColorRed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColor[0] = "red";
+                color = "red";
             }
         });
 
         imageButtonColorBlue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColor[0] = "blue";
+                color = "blue";
             }
         });
 
         imageButtonColorYellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColor[0] = "yellow";
+                color = "yellow";
             }
         });
 
         imageButtonColorGreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColor[0] = "green";
+                color = "green";
             }
         });
 
         imageButtonColorGray.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColor[0] = "gray";
+                color = "gray";
             }
         });
-
 
         if (key != null) {
             editTextLogTitle.setText(title);
@@ -101,22 +108,27 @@ public class NewLogActivity extends AppCompatActivity {
         fabPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String title = editTextLogTitle.getText().toString();
-                String content = editTextLogContent.getText().toString();
+                final String title = editTextLogTitle.getText().toString();
+                final String content = editTextLogContent.getText().toString();
 
                 if (key != null) {
-                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).child(key).setValue(
-                            new LogItemSetter(title, content, false, selectedColor[0], ServerValue.TIMESTAMP)
+                    databaseReference.child(Constants.user_id).child(Constants.referenceLogs).child(key).setValue(
+                            new LogItemSetter(title, content, false, color, ServerValue.TIMESTAMP)
                     ).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             finish();
-                            startActivity(Constants.intentDetailsActivity);
+                            startActivity(new Intent(Constants.intentDetailsActivity)
+                                            .putExtra("title", title)
+                                            .putExtra("content", content)
+                                            .putExtra("color", color)
+//                                    .putExtra("timestamp", timestamp)
+                            );
                         }
                     });
                 } else {
-                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).push().setValue(
-                            new LogItemSetter(title, content, false, selectedColor[0], ServerValue.TIMESTAMP)
+                    databaseReference.child(Constants.user_id).child(Constants.referenceLogs).push().setValue(
+                            new LogItemSetter(title, content, false, color, ServerValue.TIMESTAMP)
                     ).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -134,7 +146,19 @@ public class NewLogActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            finish();
+            if (editTextLogTitle.getText().toString().isEmpty() && editTextLogContent.getText().toString().isEmpty())
+                finish();
+            else {
+                databaseReference.child(Constants.user_id).child(Constants.referenceDrafts).push()
+                        .setValue(new LogItemSetter(
+                                editTextLogTitle.getText().toString(),
+                                editTextLogContent.getText().toString(),
+                                false,
+                                color,
+                                ServerValue.TIMESTAMP)
+                        );
+                finish();
+            }
             return true;
         }
 

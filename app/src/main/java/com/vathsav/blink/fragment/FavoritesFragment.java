@@ -23,7 +23,8 @@ import java.util.ArrayList;
 public class FavoritesFragment extends Fragment {
 
     final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-    final DatabaseReference reference = firebase.getReference().child(Constants.user_id);
+    final DatabaseReference reference = firebase.getReference()
+            .child(Constants.user_id).child(Constants.referenceLogs);
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -58,7 +59,7 @@ public class FavoritesFragment extends Fragment {
                     userLogs.add(new LogItem(logKey, logTitle, logContent, logFavorite, logColor, logTimestamp));
                 }
 
-                RecyclerView recyclerView = view.findViewById(R.id.recycler_view_fragment_favorites);
+                RecyclerView recyclerView = view.findViewById(R.id.recycler_view_favorites);
                 StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
                 recyclerView.setLayoutManager(staggeredGridLayoutManager);
 

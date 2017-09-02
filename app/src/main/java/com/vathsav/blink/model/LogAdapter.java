@@ -91,7 +91,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
             @Override
             public void onClick(View view) {
                 if (isFavorite) {
-                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id)
+                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).child(Constants.referenceLogs)
                             .child(holder.key).child("log_favorite").setValue(false).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -104,7 +104,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
                         }
                     });
                 } else {
-                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id)
+                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).child(Constants.referenceLogs)
                             .child(holder.key).child("log_favorite").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

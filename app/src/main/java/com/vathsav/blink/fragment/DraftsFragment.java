@@ -1,5 +1,6 @@
 package com.vathsav.blink.fragment;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -21,28 +22,25 @@ import com.vathsav.blink.utils.Constants;
 import java.util.ArrayList;
 
 /**
- * Contains a StaggeredGridLayout of cards
+ * Profile fragment, shows user activity and display picture with a short bio.
  */
-
-public class HomeFragment extends Fragment {
+public class DraftsFragment extends Fragment {
 
     final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
     final DatabaseReference reference = firebase.getReference()
-            .child(Constants.user_id).child(Constants.referenceLogs);
+            .child(Constants.user_id).child(Constants.referenceDrafts);
 
-    public HomeFragment() {
+    public DraftsFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_home, container, false);
+        final View view = inflater.inflate(R.layout.fragment_drafts, container, false);
 
-        getActivity().setTitle("Logs");
-
-        // TODO: 02/09/17 Display a progress dialog until the recycler view is populated
+        getActivity().setTitle("Drafts");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -53,16 +51,14 @@ public class HomeFragment extends Fragment {
                     String logKey = logSnapshot.getKey();
                     String logTitle = logSnapshot.child("log_title").getValue().toString();
                     String logContent = logSnapshot.child("log_content").getValue().toString();
-                    boolean logFavorite = logSnapshot.child("log_favorite").getValue().toString().equals("true");
                     String logColor = logSnapshot.child("log_color").getValue().toString();
                     long logTimestamp = Long.parseLong(logSnapshot.child("log_timestamp").getValue().toString());
 
-                    userLogs.add(new LogItem(logKey, logTitle, logContent, logFavorite, logColor, logTimestamp));
+                    userLogs.add(new LogItem(logKey, logTitle, logContent, false, logColor, logTimestamp));
                 }
 
-                RecyclerView recyclerView = view.findViewById(R.id.recycler_view_home);
-                StaggeredGridLayoutManager staggeredGridLayoutManager
-                        = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
+                RecyclerView recyclerView = view.findViewById(R.id.recycler_view_drafts);
+                StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
                 recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
                 LogAdapter logAdapter = new LogAdapter(userLogs, getContext());
@@ -77,4 +73,5 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
 }

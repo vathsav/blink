@@ -10,6 +10,11 @@ public class Constants {
     // User ID
     public static final String user_id = "12345";
 
+    // Firebase References
+    public static final String referenceLogs = "logs";
+    public static final String referenceDrafts = "drafts";
+    public static final String referencePreferences = "preferences";
+
     // Log Keys
     public static final String LOG_ERROR = "Blink_Error";
 
@@ -20,4 +25,7 @@ public class Constants {
     public static final Intent intentNewLogActivity = new Intent("com.vathsav.blink.NEW_LOG");
     public static final Intent intentAboutActivity = new Intent("com.vathsav.blink.ABOUT");
     public static final Intent intentSettingsActivity = new Intent("com.vathsav.blink.SETTINGS");
+
+    // User Preferences
+    public static String default_color = "cyan";
 }
