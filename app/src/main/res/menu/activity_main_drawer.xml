@@ -15,6 +15,10 @@
             android:icon="@drawable/ic_favorite_black_24dp"
             android:title="@string/nav_item_favorites" />
         <item
+            android:id="@+id/nav_drafts"
+            android:icon="@drawable/ic_view_module_black_24dp"
+            android:title="@string/nav_item_drafts" />
+        <item
             android:id="@+id/nav_preferences"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/nav_item_preferences" />

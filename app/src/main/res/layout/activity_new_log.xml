@@ -29,28 +29,29 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout5"
+        android:layout_alignBaseline="@+id/button3"
+        android:layout_alignBottom="@+id/button3"
         android:layout_alignEnd="@+id/fab_publish_new_log"
-        android:layout_marginBottom="78dp"
         android:text="@string/hint_pick_color" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_above="@+id/fab_publish_new_log"
         android:layout_alignParentStart="true"
-        android:text="@string/hint_attachment" />
+        android:layout_marginBottom="31dp"
+        android:text="@string/hint_cover" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/fab_publish_new_log"
+        android:layout_alignBottom="@+id/fab_publish_new_log"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
         android:weightSum="6">
 
         <ImageButton

@@ -40,14 +40,14 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
     @Override
     public void onBindViewHolder(final LogViewHolder holder, int position) {
         final boolean isFavorite = listOfLogs.get(position).is_log_favorite();
-        final String color = listOfLogs.get(position).get_log_color();
 
         holder.key = listOfLogs.get(position).get_log_key();
         holder.title = listOfLogs.get(position).get_log_title();
         holder.content = listOfLogs.get(position).get_log_content();
+        holder.color = listOfLogs.get(position).get_log_color();
         holder.timestamp = listOfLogs.get(position).get_log_timestamp();
 
-        switch (color) {
+        switch (holder.color) {
             case "cyan":
                 holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_cyan));
                 break;

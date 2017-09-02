@@ -8,6 +8,7 @@
     <color name="cardview_light_background">#FFFFFFFF</color>
 
     <color name="color_white">#FFFFFF</color>
+    <color name="color_dirty_black">#212121</color>
 
     <color name="cardview_color_cyan">#00E5FF</color>
     <color name="cardview_color_red">#F50057</color>

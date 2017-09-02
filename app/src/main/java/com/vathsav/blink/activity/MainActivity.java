@@ -1,5 +1,6 @@
 package com.vathsav.blink.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,10 +17,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.vathsav.blink.R;
+import com.vathsav.blink.fragment.DraftsFragment;
 import com.vathsav.blink.fragment.FavoritesFragment;
 import com.vathsav.blink.fragment.HomeFragment;
 import com.vathsav.blink.fragment.ProfileFragment;
 import com.vathsav.blink.utils.Constants;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -98,6 +102,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_favorites:
                 openFragment(new FavoritesFragment());
                 break;
+            case R.id.nav_drafts:
+                openFragment(new DraftsFragment());
+                break;
             case R.id.nav_preferences:
                 startActivity(Constants.intentSettingsActivity);
                 break;
@@ -116,5 +123,10 @@ public class MainActivity extends AppCompatActivity
                 .beginTransaction()
                 .replace(R.id.container_main, fragment)
                 .commit();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

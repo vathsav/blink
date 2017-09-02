@@ -41,6 +41,8 @@ public class HomeFragment extends Fragment {
 
         getActivity().setTitle("Logs");
 
+        // TODO: 02/09/17 Display a progress dialog until the recycler view is populated
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

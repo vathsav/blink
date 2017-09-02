@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,6 +27,7 @@ public class LogViewHolder extends RecyclerView.ViewHolder implements View.OnCli
     String key;
     String title;
     String content;
+    String color;
     long timestamp;
 
     public LogViewHolder(View itemView, Context context) {
@@ -47,6 +47,7 @@ public class LogViewHolder extends RecyclerView.ViewHolder implements View.OnCli
         context.startActivity(new Intent(Constants.intentDetailsActivity)
                 .putExtra("title", title)
                 .putExtra("content", content)
+                .putExtra("color", color)
                 .putExtra("timestamp", timestamp)
         );
     }

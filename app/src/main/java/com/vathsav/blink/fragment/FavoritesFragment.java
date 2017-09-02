@@ -20,9 +20,6 @@ import com.vathsav.blink.utils.Constants;
 
 import java.util.ArrayList;
 
-/**
- * Saved logs appear in this fragment.
- */
 public class FavoritesFragment extends Fragment {
 
     final FirebaseDatabase firebase = FirebaseDatabase.getInstance();

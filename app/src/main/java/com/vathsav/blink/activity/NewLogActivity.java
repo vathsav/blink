@@ -1,5 +1,6 @@
 package com.vathsav.blink.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,8 @@ import com.vathsav.blink.R;
 import com.vathsav.blink.model.LogItemSetter;
 import com.vathsav.blink.utils.Constants;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class NewLogActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +32,7 @@ public class NewLogActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_new_log));
         }
 
         final String key = getIntent().getStringExtra("key");
@@ -135,5 +139,10 @@ public class NewLogActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
