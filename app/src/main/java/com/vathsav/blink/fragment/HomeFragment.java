@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +28,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-    final DatabaseReference reference = firebase.getReference()
-            .child(Constants.user_id).child(Constants.referenceLogs);
+    DatabaseReference reference;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -41,6 +41,14 @@ public class HomeFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         getActivity().setTitle("Logs");
+        getActivity().findViewById(R.id.fab).setVisibility(View.VISIBLE);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            reference = firebase.getReference()
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceLogs);
+        } else {
+            FirebaseAuth.getInstance().signOut();
+        }
 
         // TODO: 02/09/17 Display a progress dialog until the recycler view is populated
 

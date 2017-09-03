@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vathsav.blink.R;
 import com.vathsav.blink.activity.MainActivity;
@@ -94,7 +95,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
             @Override
             public void onClick(View view) {
                 if (isFavorite) {
-                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).child(Constants.referenceLogs)
+                    FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceLogs)
                             .child(holder.key).child("log_favorite").setValue(false).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -107,7 +108,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
                         }
                     });
                 } else {
-                    FirebaseDatabase.getInstance().getReference().child(Constants.user_id).child(Constants.referenceLogs)
+                    FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceLogs)
                             .child(holder.key).child("log_favorite").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

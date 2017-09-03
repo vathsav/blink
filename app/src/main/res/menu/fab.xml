@@ -3,13 +3,13 @@
     <item
         android:id="@+id/fab_text"
         android:icon="@drawable/ic_mode_edit_black_24dp"
-        android:title="@string/fab_text" />
+        android:title="@string/log_type_text" />
     <item
         android:id="@+id/fab_audio"
         android:icon="@drawable/ic_mic_black_24dp"
-        android:title="@string/fab_audio" />
+        android:title="@string/log_type_audio" />
     <item
         android:id="@+id/fab_video"
         android:icon="@drawable/ic_videocam_black_24dp"
-        android:title="@string/fab_video" />
+        android:title="@string/log_type_video" />
 </menu>

@@ -5,28 +5,40 @@
     android:layout_height="match_parent"
     tools:context="com.vathsav.blink.fragment.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentTop="true"
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view_profile_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
-        app:srcCompat="@drawable/ic_face_black_24dp" />
+        android:layout_marginTop="30dp"
+        android:elevation="12dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.9"
+        app:cardCornerRadius="50dp">
+
+        <ImageView
+            android:id="@+id/image_view_profile_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    </android.support.v7.widget.CardView>
 
     <TextView
         android:id="@+id/text_view_profile_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView3"
+        android:layout_below="@+id/card_view_profile_picture"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:textSize="25sp"
         android:ems="10"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="25sp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linear_layout_stats_icons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -45,7 +57,7 @@
             android:scaleY="1"
             android:src="@drawable/ic_mode_edit_black_24dp"
             android:textAlignment="center"
-            android:tint="@color/color_dirty_black" />
+            android:tint="@color/color_dirty_white" />
 
         <ImageView
             android:layout_width="0dp"
@@ -54,7 +66,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_mic_black_24dp"
             android:textAlignment="center"
-            android:tint="@color/color_dirty_black" />
+            android:tint="@color/color_dirty_white" />
 
         <ImageView
             android:layout_width="0dp"
@@ -63,55 +75,56 @@
             android:layout_weight="1"
             android:src="@drawable/ic_videocam_black_24dp"
             android:textAlignment="center"
-            android:tint="@color/color_dirty_black" />
+            android:tint="@color/color_dirty_white" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_layout_stats_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout3"
+        android:layout_below="@+id/linear_layout_stats_icon_description"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <TextView
+            android:id="@+id/text_view_stats_text_count"
             fontPath="fonts/Lato-Bold.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="0"
             android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/text_view_stats_audio_count"
             fontPath="fonts/Lato-Bold.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="0"
             android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/text_view_stats_video_count"
             fontPath="fonts/Lato-Bold.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="0"
             android:textAlignment="center"
             android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/linear_layout_stats_icon_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_below="@+id/linear_layout_stats_icons"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="3">
@@ -122,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Text"
+            android:text="@string/log_type_text"
             android:textAlignment="center" />
 
         <TextView
@@ -131,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Audio"
+            android:text="@string/log_type_audio"
             android:textAlignment="center" />
 
         <TextView
@@ -140,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="Video"
+            android:text="@string/log_type_video"
             android:textAlignment="center" />
     </LinearLayout>
 
@@ -149,8 +162,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_marginTop="75dp"
+        android:layout_below="@+id/linear_layout_stats_count"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
         <ImageView

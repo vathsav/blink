@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +29,7 @@ public class DraftsFragment extends Fragment {
 
     final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
     final DatabaseReference reference = firebase.getReference()
-            .child(Constants.user_id).child(Constants.referenceDrafts);
+            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceDrafts);
 
     public DraftsFragment() {
         // Required empty public constructor
@@ -40,6 +41,7 @@ public class DraftsFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_drafts, container, false);
 
         getActivity().setTitle("Drafts");
+        getActivity().findViewById(R.id.fab).setVisibility(View.VISIBLE);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

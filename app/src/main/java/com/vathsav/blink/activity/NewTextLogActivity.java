@@ -11,9 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
@@ -133,7 +135,7 @@ public class NewTextLogActivity extends AppCompatActivity {
                 final String content = editTextLogContent.getText().toString();
 
                 if (key != null) {
-                    databaseReference.child(Constants.user_id).child(Constants.referenceLogs).child(key).setValue(
+                    databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceLogs).child(key).setValue(
                             new LogItemSetter(title, content, false, color, ServerValue.TIMESTAMP)
                     ).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -148,17 +150,21 @@ public class NewTextLogActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    databaseReference.child(Constants.user_id).child(Constants.referenceLogs).push().setValue(
+                    databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceLogs).push().setValue(
                             new LogItemSetter(title, content, false, color, ServerValue.TIMESTAMP)
                     ).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            finish();
-                            startActivity(new Intent(Constants.intentDetailsActivity)
-                                    .putExtra("title", title)
-                                    .putExtra("content", content)
-                                    .putExtra("color", color)
-                            );
+                            if (task.isSuccessful()) {
+                                finish();
+                                startActivity(new Intent(Constants.intentDetailsActivity)
+                                        .putExtra("title", title)
+                                        .putExtra("content", content)
+                                        .putExtra("color", color)
+                                );
+                            } else {
+                                Toast.makeText(getApplicationContext(), task.getResult().toString(), Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                 }
@@ -176,9 +182,11 @@ public class NewTextLogActivity extends AppCompatActivity {
             else {
                 if (color == null || color.equals("")) color = "cyan";
 
+                // TODO: 03/09/17 Save as draft only if changes are made! Also, prompt user.
+
                 if (key != null && key.length() > 0) {
                     // Editing a log or a draft. Must overwrite existing drafts. Child key.
-                    databaseReference.child(Constants.user_id).child(Constants.referenceDrafts).child(key)
+                    databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceDrafts).child(key)
                             .setValue(new DraftItemSetter(
                                     editTextLogTitle.getText().toString(),
                                     editTextLogContent.getText().toString(),
@@ -186,7 +194,7 @@ public class NewTextLogActivity extends AppCompatActivity {
                                     ServerValue.TIMESTAMP)
                             );
                 } else {
-                    databaseReference.child(Constants.user_id).child(Constants.referenceDrafts).push()
+                    databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceDrafts).push()
                             .setValue(new DraftItemSetter(
                                     editTextLogTitle.getText().toString(),
                                     editTextLogContent.getText().toString(),
@@ -194,6 +202,7 @@ public class NewTextLogActivity extends AppCompatActivity {
                                     ServerValue.TIMESTAMP)
                             );
                 }
+
                 finish();
             }
 

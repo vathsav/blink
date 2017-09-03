@@ -2,13 +2,13 @@ package com.vathsav.blink.utils;
 
 import android.content.Intent;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseUser;
+
 /**
  * App wide constants
  */
 public class Constants {
-
-    // User ID
-    public static final String user_id = "12345";
 
     // Firebase References
     public static final String referenceLogs = "logs";
@@ -19,7 +19,7 @@ public class Constants {
     public static final String LOG_ERROR = "Blink_Error";
 
     // Activity Intents
-    public static final Intent intentVerificationActivity = new Intent("com.vathsav.blink.VERIFICATION");
+    public static final Intent intentLoginActivity = new Intent("com.vathsav.blink.LOGIN");
     public static final Intent intentMainActivity = new Intent("com.vathsav.blink.MAIN");
     public static final Intent intentDetailsActivity = new Intent("com.vathsav.blink.DETAILS");
     public static final Intent intentNewTextLogActivity = new Intent("com.vathsav.blink.NEW_TEXT_LOG");
@@ -30,4 +30,8 @@ public class Constants {
 
     // User Preferences
     public static String default_color = "cyan";
+
+    // Login Globals
+    public static GoogleApiClient googleApiClient;
+    public static int googleLoginActivityResultCode = 2001;
 }

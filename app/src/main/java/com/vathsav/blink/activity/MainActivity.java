@@ -16,8 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 import com.vathsav.blink.R;
 import com.vathsav.blink.fragment.DraftsFragment;
 import com.vathsav.blink.fragment.FavoritesFragment;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static CoordinatorLayout coordinatorLayout;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +85,18 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String display_name = preferences.getString("display_name", null);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
 
         View navigationHeader = navigationView.getHeaderView(0);
         TextView textViewNavUserName = navigationHeader.findViewById(R.id.text_view_nav_user_name);
-        textViewNavUserName.setText(display_name);
+        ImageView imageViewProfilePicture = navigationHeader.findViewById(R.id.image_view_profile_picture);
+
+        // TODO: 03/09/17 Handle this from the shared preferences
+        // textViewNavUserName.setText(display_name);
+        textViewNavUserName.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        Picasso.with(getApplicationContext()).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()).into(imageViewProfilePicture);
     }
 
     @Override
@@ -124,22 +134,25 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_home:
                 openFragment(new HomeFragment());
+                navigationView.getMenu().getItem(0).setChecked(true);
                 break;
             case R.id.nav_profile:
                 openFragment(new ProfileFragment());
+                navigationView.getMenu().getItem(1).setChecked(true);
                 break;
             case R.id.nav_favorites:
                 openFragment(new FavoritesFragment());
+                navigationView.getMenu().getItem(2).setChecked(true);
                 break;
             case R.id.nav_drafts:
                 openFragment(new DraftsFragment());
+                navigationView.getMenu().getItem(3).setChecked(true);
                 break;
             case R.id.nav_preferences:
                 startActivity(Constants.intentSettingsActivity);
                 break;
             case R.id.nav_logout:
-                startActivity(Constants.intentVerificationActivity);
-                finish();
+                FirebaseAuth.getInstance().signOut();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

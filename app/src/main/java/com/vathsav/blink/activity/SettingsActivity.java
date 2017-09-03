@@ -104,9 +104,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         boolean offline_mode = preferences.getBoolean("offline_mode", false);
         boolean password_protection = preferences.getBoolean("password_protection", false);
 
-        assert display_name != null;
-
-        if (display_name.length() > 0) {
+        if (display_name != null) {
             editTextPreferenceDisplayName.setSummary(display_name);
         }
 

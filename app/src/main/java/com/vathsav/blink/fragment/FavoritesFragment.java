@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +25,7 @@ public class FavoritesFragment extends Fragment {
 
     final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
     final DatabaseReference reference = firebase.getReference()
-            .child(Constants.user_id).child(Constants.referenceLogs);
+            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.referenceLogs);
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -42,6 +43,7 @@ public class FavoritesFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
         getActivity().setTitle("Favorites");
+        getActivity().findViewById(R.id.fab).setVisibility(View.VISIBLE);
 
         reference.orderByChild("log_favorite").equalTo(true).addValueEventListener(new ValueEventListener() {
             @Override
