@@ -9,4 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <ImageView
+        android:id="@+id/image_view_walkthrough_home_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/walkthrough_home_empty"
+        android:visibility="invisible" />
+
 </FrameLayout>

@@ -17,7 +17,6 @@ import com.vathsav.blink.utils.Constants;
 
 public class DraftViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     final TextView textViewTitle;
-    final TextView textViewTimestamp;
     final ImageButton imageButtonEdit;
     final ImageButton imageButtonDelete;
     final RelativeLayout layoutCardView;
@@ -34,7 +33,6 @@ public class DraftViewHolder extends RecyclerView.ViewHolder implements View.OnC
         this.context = context;
         itemView.setOnClickListener(this);
         textViewTitle = itemView.findViewById(R.id.text_view_card_title);
-        textViewTimestamp = itemView.findViewById(R.id.text_view_card_timestamp);
         imageButtonEdit = itemView.findViewById(R.id.image_button_edit);
         imageButtonDelete = itemView.findViewById(R.id.image_button_delete);
         layoutCardView = itemView.findViewById(R.id.layout_card_log);

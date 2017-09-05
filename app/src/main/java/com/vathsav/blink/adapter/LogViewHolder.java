@@ -17,7 +17,6 @@ import com.vathsav.blink.utils.Constants;
 
 public class LogViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     final TextView textViewTitle;
-    final TextView textViewTimestamp;
     final ImageButton imageButtonEdit;
     final ImageButton imageButtonFavorite;
     final ImageButton imageButtonShare;
@@ -35,7 +34,6 @@ public class LogViewHolder extends RecyclerView.ViewHolder implements View.OnCli
         this.context = context;
         itemView.setOnClickListener(this);
         textViewTitle = itemView.findViewById(R.id.text_view_card_title);
-        textViewTimestamp = itemView.findViewById(R.id.text_view_card_timestamp);
         imageButtonEdit = itemView.findViewById(R.id.image_button_edit);
         imageButtonFavorite = itemView.findViewById(R.id.image_button_favorite);
         imageButtonShare = itemView.findViewById(R.id.image_button_share);

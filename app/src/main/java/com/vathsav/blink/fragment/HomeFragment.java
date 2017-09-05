@@ -7,6 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -75,6 +76,12 @@ public class HomeFragment extends Fragment {
 
                 LogAdapter logAdapter = new LogAdapter(userLogs, getContext());
                 recyclerView.setAdapter(logAdapter);
+
+                ImageView imageViewWalkthroughHomeEmpty = view.findViewById(R.id.image_view_walkthrough_home_empty);
+                if (userLogs.size() == 0)
+                    imageViewWalkthroughHomeEmpty.setVisibility(View.VISIBLE);
+                else
+                    imageViewWalkthroughHomeEmpty.setVisibility(View.INVISIBLE);
             }
 
             @Override

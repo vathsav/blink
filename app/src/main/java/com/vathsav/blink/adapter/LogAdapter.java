@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,29 +52,26 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
 
         switch (holder.color) {
             case "cyan":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_cyan));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_cyan));
                 break;
             case "red":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_red));
-                // TODO: 02/09/17 Refine this. Works in a strange way. Colors are off by 1. Top corners need to be rounded :(
-                // DrawableCompat.setTint(ContextCompat.getDrawable(context, R.drawable.card_border), ContextCompat.getColor(context, R.color.cardview_color_red));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_red));
                 break;
             case "blue":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_blue));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_blue));
                 break;
             case "yellow":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_yellow));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_yellow));
                 break;
             case "green":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_green));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_green));
                 break;
             case "gray":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_gray));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_gray));
                 break;
         }
 
         holder.textViewTitle.setText(listOfLogs.get(position).get_log_title());
-        holder.textViewTimestamp.setText(String.valueOf(listOfLogs.get(position).get_log_timestamp()));
 
         if (listOfLogs.get(position).is_log_favorite())
             holder.imageButtonFavorite.setImageResource(R.drawable.ic_favorite_black_24dp);
@@ -121,7 +119,6 @@ public class LogAdapter extends RecyclerView.Adapter<LogViewHolder> {
                         }
                     });
                 }
-
             }
         });
 

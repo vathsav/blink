@@ -2,6 +2,7 @@ package com.vathsav.blink.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,27 +45,26 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftViewHolder> {
 
         switch (holder.color) {
             case "cyan":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_cyan));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_cyan));
                 break;
             case "red":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_red));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_red));
                 break;
             case "blue":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_blue));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_blue));
                 break;
             case "yellow":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_yellow));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_yellow));
                 break;
             case "green":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_green));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_green));
                 break;
             case "gray":
-                holder.layoutCardView.setBackgroundColor(context.getResources().getColor(R.color.cardview_color_gray));
+                holder.layoutCardView.setBackground(ContextCompat.getDrawable(context, R.drawable.card_border_gray));
                 break;
         }
 
         holder.textViewTitle.setText(listOfDrafts.get(position).get_draft_title());
-        holder.textViewTimestamp.setText(String.valueOf(listOfDrafts.get(position).get_draft_timestamp()));
 
         holder.imageButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
