@@ -8,9 +8,6 @@
     <string name="action_about">About</string>
     <string name="action_settings">Settings</string>
 
-    <!-- Client IDs-->
-    <string name="google_auth_web_client_id">949303641501-303srcgdvf1cbeafemsbq198ni5edejk.apps.googleusercontent.com</string>
-
     <!-- Activity  Titles-->
     <string name="title_activity_main">Blink</string>
     <string name="title_activity_details">Details</string>
